@@ -1,5 +1,5 @@
 import GeoJSONLayer from "@arcgis/core/layers/GeoJSONLayer";
-import { ArcgisMap } from "@arcgis/map-components-react";
+import { ArcgisLegend, ArcgisMap } from "@arcgis/map-components-react";
 import PopupTemplate from "@arcgis/core/PopupTemplate";
 import SimpleRenderer from "@arcgis/core/renderers/SimpleRenderer";
 import SimpleMarkerSymbol from "@arcgis/core/symbols/SimpleMarkerSymbol";
@@ -46,7 +46,9 @@ function App() {
 
           map.add(geoJSONLayer);
         }}
-      ></ArcgisMap>
+      >
+        <ArcgisLegend></ArcgisLegend>
+      </ArcgisMap>
     </div>
   );
 }
