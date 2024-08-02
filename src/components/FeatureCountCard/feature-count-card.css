@@ -2,10 +2,27 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: start;
   padding: 20px;
   border-radius: 10px;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
+}
+
+.feature-count-card .title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.feature-count-card .item .label {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.feature-count-card .item .value {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #333;
 }
