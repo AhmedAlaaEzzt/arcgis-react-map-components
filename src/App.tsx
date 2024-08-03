@@ -35,8 +35,6 @@ const geoJSONLayer = new GeoJSONLayer({
   url: "http://localhost:3001/earthquakes",
   popupTemplate: template,
   renderer: simpleRenderer,
-  definitionExpression: "mag > 6",
-  refreshInterval: 0.125,
 });
 
 function App() {
