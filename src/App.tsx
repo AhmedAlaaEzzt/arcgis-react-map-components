@@ -44,7 +44,7 @@ function App() {
         <ArcgisMap
           basemap={"gray-vector"}
           center={[54.9976298, 25.004775094782516]}
-          zoom={12}
+          zoom={15}
           onArcgisViewReadyChange={(event) => {
             const { map, view }: { map: __esri.Map; view: __esri.MapView } =
               event.target;
