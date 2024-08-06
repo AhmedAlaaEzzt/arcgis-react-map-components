@@ -31,6 +31,7 @@ const simpleRenderer = new SimpleRenderer({
 });
 
 const geoJSONLayer = new GeoJSONLayer({
+  id: "earthquakesGeoJSONLayer",
   url: "http://localhost:3001/earthquakes",
   popupTemplate: template,
   renderer: simpleRenderer,
