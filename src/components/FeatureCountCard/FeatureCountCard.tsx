@@ -1,24 +1,42 @@
+import { useEffect, useState } from "react";
 import "./feature-count-card.css";
 export const FeatureCountCard = (props: {
-  id: string;
   title: string;
-  count: number;
-  inViewCount: number;
+  view: __esri.MapView;
 }) => {
-  const { id, title, count, inViewCount } = props;
+  const { title, view } = props;
+  const featureCountCardID = "featureCountCard";
+  const [layerFeaturesCount, setLayerFeaturesCount] = useState<number | string>(
+    "-"
+  );
+
+  useEffect(() => {
+    view.ui.add(featureCountCardID, "bottom-right");
+
+    (async () => {
+      const layer = view.map.findLayerById(
+        "earthquakesGeoJSONLayer"
+      ) as __esri.GeoJSONLayer;
+
+      if (layer) {
+        const totalLayerFeatures = await layer.queryFeatureCount();
+        setLayerFeaturesCount(totalLayerFeatures);
+      }
+    })();
+  }, [view]);
 
   return (
-    <div id={id} className="feature-count-card">
+    <div id={featureCountCardID} className="feature-count-card">
       <div className="title">{title}</div>
 
       <div className="item">
         <span className="label">LayerView features:</span>
-        <span className="value"> {inViewCount}</span>
+        <span className="value"> 0</span>
       </div>
 
       <div className="item">
-        <span className="label">Layer Features:</span>
-        <span className="value"> {count}</span>
+        <span className="label">Layer Features: </span>
+        <span className="value">{layerFeaturesCount}</span>
       </div>
     </div>
   );
