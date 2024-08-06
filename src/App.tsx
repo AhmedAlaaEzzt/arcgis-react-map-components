@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import GeoJSONLayer from "@arcgis/core/layers/GeoJSONLayer";
 import PopupTemplate from "@arcgis/core/PopupTemplate";
 import SimpleRenderer from "@arcgis/core/renderers/SimpleRenderer";
@@ -38,7 +40,8 @@ const geoJSONLayer = new GeoJSONLayer({
 });
 
 function App() {
-  const featureCountCardID = "featureCountCard";
+  const [mapView, setMapView] = useState<__esri.MapView>();
+
   return (
     <>
       <div className="mapDiv">
@@ -49,14 +52,14 @@ function App() {
           onArcgisViewReadyChange={(event) => {
             const { map, view }: { map: __esri.Map; view: __esri.MapView } =
               event.target;
+            setMapView(view);
             map.add(geoJSONLayer);
-            view.ui.add(featureCountCardID, "bottom-right");
           }}
         >
           <ArcgisLegend></ArcgisLegend>
         </ArcgisMap>
       </div>
-      <FeatureCountCard id={featureCountCardID} title="Earthquakes" />
+      {mapView && <FeatureCountCard title="Earthquakes" view={mapView} />}
     </>
   );
 }
