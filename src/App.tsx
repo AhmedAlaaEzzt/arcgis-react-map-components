@@ -55,12 +55,7 @@ function App() {
           <ArcgisLegend></ArcgisLegend>
         </ArcgisMap>
       </div>
-      <FeatureCountCard
-        id={featureCountCardID}
-        title="Earthquakes"
-        count={0}
-        inViewCount={0}
-      />
+      <FeatureCountCard id={featureCountCardID} title="Earthquakes" />
     </>
   );
 }
