@@ -11,18 +11,19 @@ export const FeatureCountCard = (props: {
   );
 
   useEffect(() => {
-    view.ui.add(featureCountCardID, "bottom-right");
-
-    (async () => {
-      const layer = view.map.findLayerById(
+    const updateFeatureCount = async () => {
+      const peopleGeojson = view.map.findLayerById(
         "earthquakesGeoJSONLayer"
       ) as __esri.GeoJSONLayer;
 
-      if (layer) {
-        const totalLayerFeatures = await layer.queryFeatureCount();
-        setLayerFeaturesCount(totalLayerFeatures);
+      if (peopleGeojson) {
+        const featureCount = await peopleGeojson.queryFeatureCount();
+        setLayerFeaturesCount(featureCount);
       }
-    })();
+    };
+
+    view.ui.add(featureCountCardID, "bottom-right");
+    updateFeatureCount();
   }, [view]);
 
   return (
