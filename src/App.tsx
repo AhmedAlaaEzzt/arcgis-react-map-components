@@ -40,6 +40,12 @@ const geoJSONLayer = new GeoJSONLayer({
   renderer: simpleRenderer,
 });
 
+const onThumbDragSlider = (event: __esri.SliderThumbDragEvent) => {
+  const { value } = event;
+
+  geoJSONLayer.definitionExpression = `mag >=${value}`;
+};
+
 function App() {
   const [mapView, setMapView] = useState<__esri.MapView>();
 
@@ -61,7 +67,7 @@ function App() {
         </ArcgisMap>
       </div>
       {mapView && <FeatureCountCard title="Earthquakes" view={mapView} />}
-      {mapView && <ArcSlider view={mapView} />}
+      {mapView && <ArcSlider view={mapView} onThumbDrag={onThumbDragSlider} />}
     </>
   );
 }
