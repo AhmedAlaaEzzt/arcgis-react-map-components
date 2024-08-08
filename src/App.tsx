@@ -44,6 +44,7 @@ const onThumbDragSlider = (event: __esri.SliderThumbDragEvent) => {
   const { value } = event;
 
   geoJSONLayer.definitionExpression = `mag >=${value}`;
+  geoJSONLayer.refresh();
 };
 
 function App() {
