@@ -9,6 +9,7 @@ import SizeStop from "@arcgis/core/renderers/visualVariables/support/SizeStop";
 import { ArcgisLegend, ArcgisMap } from "@arcgis/map-components-react";
 
 import { FeatureCountCard } from "./components/FeatureCountCard/FeatureCountCard";
+import { ArcSlider } from "./components/ArcSlider/ArcSlider";
 
 import "./App.css";
 
@@ -60,6 +61,7 @@ function App() {
         </ArcgisMap>
       </div>
       {mapView && <FeatureCountCard title="Earthquakes" view={mapView} />}
+      {mapView && <ArcSlider view={mapView} />}
     </>
   );
 }
