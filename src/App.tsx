@@ -17,6 +17,12 @@ const simpleRenderer = new SimpleRenderer({
   symbol: simpleMarkerSymbol,
 });
 
+const geoJSONLayer = new GeoJSONLayer({
+  url: "http://localhost:3001/earthquakes",
+  popupTemplate: template,
+  renderer: simpleRenderer,
+});
+
 function App() {
   return (
     <div className="mapDiv">
@@ -25,13 +31,7 @@ function App() {
         center={[54.9976298, 25.004775094782516]}
         zoom={12}
         onArcgisViewReadyChange={(event) => {
-          const map = event.target.map as __esri.Map;
-
-          const geoJSONLayer = new GeoJSONLayer({
-            url: "http://localhost:3001/earthquakes",
-            popupTemplate: template,
-            renderer: simpleRenderer,
-          });
+          const { map }: { map: __esri.Map } = event.target;
 
           map.add(geoJSONLayer);
         }}
